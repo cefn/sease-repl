@@ -138,3 +138,12 @@ js > processBody({q:'man',group:true,"group.field":'author_s'}, body => body.gro
   { groupValue: 'Dick, Philip K.', doclist: [Object] }
 ]
 ```
+
+
+### Using field collapsing
+
+In the case of field collapsing (as a form of grouping) things come back as a single document for each group in the normal document list. 
+
+```js
+processDocs({q:'man',fq:'{!collapse field=author_s}'})
+```
