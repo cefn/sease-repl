@@ -33,6 +33,22 @@ processDocs({ rows: 1000, q: { author: 'poe' }}, doc => doc.title)
 
 ```
 
+For example the last invocation looks like this in an interactive REPL shell.
+
+```
+js > processDocs({ rows: 1000, q: { author: 'poe' }}, doc => doc.title)
+[
+  'The Works of Edgar Allan Poe — Volume 1',
+  'The Works of Edgar Allan Poe — Volume 2',
+  'The Fall of the House of Usher',
+  'The Raven',
+  'The Works of Edgar Allan Poe — Volume 3',
+  'The Works of Edgar Allan Poe — Volume 5',
+  'The Works of Edgar Allan Poe — Volume 4',
+  'The Complete Poetical Works of Edgar Allan Poe: Including Essays on Poetry'
+]
+```
+
 ### More complex processing
 
 This shows how to detail a fancier query structure, and a rendering function which pulls out and render specific details of each doc.
