@@ -109,5 +109,32 @@ processDocs('({!mlt qf=subjects mintf=1 v="345"})({!edismax pf=author qf=author 
 
 processDocs({q:'yellow',bq:['king^100','wallpaper^0.1']}, doc=>doc.title)
 
+```
 
+### Accessing body content
+
+Sometimes the results aren't in the body.response.docs but somewhere else.
+
+You can process the body in a different way, for example a grouped query might look like this...
+
+```js
+processBody({q:'man',group:true,"group.field":'author'}, body => body.grouped.author.groups)
+```
+
+Which results in the following in an interactive session
+
+```sh
+js > processBody({q:'man',group:true,"group.field":'author_s'}, body => body.grouped.author_s.groups)
+[
+  { groupValue: 'Shaw, Bernard', doclist: [Object] },
+  { groupValue: 'Shaara, Michael', doclist: [Object] },
+  { groupValue: 'Smith, Evelyn E.', doclist: [Object] },
+  { groupValue: 'Wesley, Joseph', doclist: [Object] },
+  { groupValue: 'Allen, James', doclist: [Object] },
+  { groupValue: 'Wilde, Oscar', doclist: [Object] },
+  { groupValue: 'Wallace, F. L. (Floyd L.)', doclist: [Object] },
+  { groupValue: 'Twain, Mark', doclist: [Object] },
+  { groupValue: 'Dumas, Alexandre', doclist: [Object] },
+  { groupValue: 'Dick, Philip K.', doclist: [Object] }
+]
 ```
