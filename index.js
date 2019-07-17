@@ -7,7 +7,6 @@ const {
 
 const getAsync = promisify(request.get)
 
-
 // Globals intended to be manipulated from within a REPL session
 
 let server = {
@@ -17,6 +16,7 @@ let server = {
 }
 
 let defaultQuerySpec = {
+  defType: "edismax",
   debug: "all",
   wt: 'json',
   indent: 'true',
@@ -78,21 +78,26 @@ function createParamString(querySpec) {
 
   //serialise key:value pairs for URL
   queryPairs = []
-  for (name in querySpec) {
-    if (name == 'q' && typeof querySpec.q == 'object') {
+  for (let entryName in querySpec) {
+    let entryValue = querySpec[entryName]
+    if (Array.isArray(entryValue)) {
+      for (let childValue of entryValue) {
+        queryPairs.push(`${entryName}=${childValue}`)
+      }
+    } else if (entryName == 'q' && typeof querySpec.q == 'object') {
       let fieldPairs = []
-      for (fieldName in querySpec.q) {
+      for (let fieldName in querySpec.q) {
         if (fieldName) { //string: field name to match 
           fieldPairs.push(`${fieldName}:${querySpec.q[fieldName]}`)
         } else { //empty string = match default field
           fieldPairs.push(`${querySpec.q[fieldName]}`)
         }
       }
-      querySpec.q = fieldPairs.join(" ")
+      queryPairs.push(`q=${fieldPairs.join(" ")}`)
+    } else {
+      queryPairs.push(`${entryName}=${entryValue}`)
     }
-    queryPairs.push(`${name}=${querySpec[name]}`)
   }
-
   return `?${queryPairs.join("&")}`
 }
 
