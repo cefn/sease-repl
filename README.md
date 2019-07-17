@@ -22,14 +22,14 @@ This shows how to query in three different ways. Each doc in the query results i
 
 ```js
 
-//specify a query against the default field 
-processDocs('yellow', console.log)
+//specify a query against the default field passing it to console.log
+processDocs('yellow')
 
-//specify a query against the default field, specifying q explicitly, (alongside other parameters in querySpec) 
-processDocs({ rows: 2, q: 'yellow'}, console.log)
+//specify a query against the default field, return authors, specifying q explicitly, (alongside other parameters in querySpec) 
+processDocs({ rows: 2, q: 'yellow'}, doc => doc.author)
 
 //specify a query against a fieldName explicitly
-processDocs({ rows: 2, q: { text_all: 'yellow' }}, console.log)
+processDocs({ rows: 1000, q: { author: 'poe' }}, doc => doc.title)
 
 ```
 
