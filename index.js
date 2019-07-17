@@ -69,7 +69,7 @@ function createParamString(querySpec) {
   }
 
   //merge default params
-  querySpec = Object.assign(defaultQuerySpec, querySpec)
+  querySpec = Object.assign({}, defaultQuerySpec, querySpec)
 
   //check required values
   if (!('q' in querySpec)) {
