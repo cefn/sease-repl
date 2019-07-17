@@ -82,6 +82,16 @@ processDocs("man", () => count++).then(() => {
 })
 ```
 
+### Mapping documents 
+
+If your callback produces a defined result, you can see the mapped results
+
+```js
+processDocs('{!mlt qf=subjects mintf=1 v="345"}', doc=>doc.title)
+
+processDocs('({!mlt qf=subjects mintf=1 v="345"})({!edismax pf=author qf=author v="edgar allen poe"})', doc=>doc.author)
+
+```
 
 // processDocs({
 //   q: "({!dismax qf=subjects v='yellow'})({!dismax qf=title v='wallpaper'})",
