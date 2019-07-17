@@ -1,0 +1,34 @@
+{
+  "name": "sease-repl",
+  "version": "0.1.0",
+  "description": "Set up a REPL for interactively making SOLR queries from Node",
+  "dependencies": {
+    "await-repl": "^1.0.2",
+    "bluebird": "^3.5.5",
+    "repl-promised": "^0.1.0",
+    "repl.js": "^2.3.7",
+    "request": "^2.88.0",
+    "solr-node": "^1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node_modules/repl.js/run/repl --clean -f index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cefn/sease-repl.git"
+  },
+  "keywords": [
+    "solr",
+    "sease",
+    "repl",
+    "node"
+  ],
+  "author": "Cefn Hoile",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cefn/sease-repl/issues"
+  },
+  "homepage": "https://github.com/cefn/sease-repl#readme"
+}
