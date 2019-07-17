@@ -107,8 +107,7 @@ processDocs('{!mlt qf=subjects mintf=1 v="345"}', doc=>doc.title)
 
 processDocs('({!mlt qf=subjects mintf=1 v="345"})({!edismax pf=author qf=author v="edgar allen poe"})', doc=>doc.author)
 
-```
+processDocs({q:'yellow',bq:['king^100','wallpaper^0.1']}, doc=>doc.title)
 
-// processDocs({
-//   q: "({!dismax qf=subjects v='yellow'})({!dismax qf=title v='wallpaper'})",
-// }, console.log)
+
+```
